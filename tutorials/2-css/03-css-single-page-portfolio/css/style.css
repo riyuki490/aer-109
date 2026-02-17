@@ -1,0 +1,31 @@
+/* CSS rests */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* respecting user font size prefrences */
+html {
+    font-size: 100%;
+}
+
+/* Genereal CSS  */
+
+body {
+    background-color: #ffebcd;
+    font-family:fantasy;
+    font-size: 1.3rem;
+    line-height: 1.5;
+}
+header {
+    padding: 6rem;
+    margin-bottom: 3rem;
+    background-color: #ffa381;
+    border-bottom: #000 3px solid;
+    text-align: center;
+}
+
+ header h1 {
+    font-size: 3rem;
+ }
