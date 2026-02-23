@@ -1,19 +1,40 @@
-/* CSS rests */
+/* ~~~~~~~~~~~~~~ color palette  */
+
+
+:root {
+    --bg-color-1: #FFDD86;
+    --bg-color-2: #F97068;
+    --font: #19323C;
+    --accent-1: #2176FF;
+    --accent-2: #E7E5DF;
+    --dark: #603140;
+}
+
+
+
+
+
+
+
+
+
+/* ~~~~~~~~~~~~ CSS rests */
 
 * {
     margin: 0;
     padding: 0;
 }
 
-/* respecting user font size prefrences */
+/* ~~~~~~~~~~~~~~ respecting user font size prefrences */
 html {
     font-size: 100%;
 }
 
-/* Genereal CSS  */
+/* ~~~~~~~~~~~~~~ Genereal CSS  */
 
 body {
-    background-color: #ffebcd;
+    background-color: var(--bg-color-1);
+    color: var(--font);
     font-family: fantasy;
     font-size: 1.3rem;
     line-height: 1.5;
@@ -22,34 +43,35 @@ body {
 header {
     padding: 6rem;
     margin-bottom: 3rem;
-    background-color: #ffa381;
-    border-bottom: #000 3px solid;
+    background-color: var(--dark);
+    color: var(--accent-2);
+    border-bottom: var(--font) 3px solid;
     text-align: center;
 }
 
 header h1 {
     font-size: 3rem;
-    text-decoration: underline;
+    /* text-decoration: underline;
     text-decoration-style: wavy;
-    text-decoration-color: #ffdd86cf;
+    text-decoration-color: #2176FF; */
 }
 
 nav {
     position: fixed;
     right: 2rem;
     top: 2rem;
-    background-color: #ffa381;
+    background-color: var(--dark);
 }
 
 nav a {
     text-decoration: none;
-    color: #984040cf;
+    color: var(--accent-2);
     display: inline-block;
     margin: 1.5rem
 }
 
 nav a:hover {
-    background-color: #ffdd86cf;
+    background-color: var(--accent-1);
 }
 
 main {}
@@ -76,10 +98,10 @@ main {}
 
 .portfolio-item {
     margin-bottom: 5rem;
-    background-color: #ffdd86cf;
+    background-color: var(--bg-color-1);
     padding: 4rem;
     text-align: center;
-    border: 2px #000 solid;
+    border: 2px var(--dark) solid;
     border-radius: .5rem;
     box-shadow: 10px 10px 5px #36003868;
 }
@@ -100,20 +122,34 @@ main {}
 }
 
 .about-section {
-    background-color: #ffb458a9;
+    /* background-color: #ffb458a9; */
 }
 
 .portfolio-section {
-    background-color: #984040cf;
+    background-color: var(--bg-color-2);
 }
 
 footer {
-    background-color: #ffa381;
-    color:#984040cf;
+    background-color: #603140;
+    color: #E7E5DF;
     padding: 1rem;
     text-align: right;
 }
 
 footer p {
     font-size: 1.2rem;
+}
+
+
+
+
+
+/* ~~~~~~~~~~~~~~ style classes */
+
+.accent-1 {
+    color: #2176FF;
+}
+
+.accent-2 {
+    color: #E7E5DF;
 }
