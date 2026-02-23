@@ -14,10 +14,11 @@ html {
 
 body {
     background-color: #ffebcd;
-    font-family:fantasy;
+    font-family: fantasy;
     font-size: 1.3rem;
     line-height: 1.5;
 }
+
 header {
     padding: 6rem;
     margin-bottom: 3rem;
@@ -26,6 +27,93 @@ header {
     text-align: center;
 }
 
- header h1 {
+header h1 {
     font-size: 3rem;
- }
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: #ffdd86cf;
+}
+
+nav {
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    background-color: #ffa381;
+}
+
+nav a {
+    text-decoration: none;
+    color: #984040cf;
+    display: inline-block;
+    margin: 1.5rem
+}
+
+nav a:hover {
+    background-color: #ffdd86cf;
+}
+
+main {}
+
+.about-section,
+.portfolio-section,
+.contact-section {
+    margin-bottom: 5rem;
+}
+
+.about-content,
+.portfolio-content,
+.contact-content {
+    max-width: 60rem;
+    margin: 2rem auto;
+    padding: 2rem 0;
+}
+
+.about-content h2,
+.portfolio-content h2,
+.contact-content h2 {
+    padding: 2rem 0;
+}
+
+.portfolio-item {
+    margin-bottom: 5rem;
+    background-color: #ffdd86cf;
+    padding: 4rem;
+    text-align: center;
+    border: 2px #000 solid;
+    border-radius: .5rem;
+    box-shadow: 10px 10px 5px #36003868;
+}
+
+.portfolio-item img {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    border-radius: .5rem;
+}
+
+.portfolio-item h3 {
+    margin: 1rem 0;
+}
+
+.portfolio-item p {
+    font-size: 1.2rem;
+}
+
+.about-section {
+    background-color: #ffb458a9;
+}
+
+.portfolio-section {
+    background-color: #984040cf;
+}
+
+footer {
+    background-color: #ffa381;
+    color:#984040cf;
+    padding: 1rem;
+    text-align: right;
+}
+
+footer p {
+    font-size: 1.2rem;
+}
