@@ -81,7 +81,58 @@ body {
 }
 
 @keyframes stretch {
-    0% {width: 100px;}
+    0% {
+        width: 100px;
+    }
 
-    100% {width: 80vw;}
+    100% {
+        width: 80vw;
+    }
+}
+
+.press-div {
+    text-align: end;
+}
+
+.press {
+    text-size-adjust: 50px;
+    color: aquamarine;
+    background-color:maroon;
+    padding: 80px;
+    border-radius: 500px;
+    text-decoration: none;
+    display: inline-block;
+    animation: skew 3s infinite alternate;
+    transition: all .5s;
+
+}
+
+@keyframes skew {
+    0% {
+        transform: skew(0deg, 0deg);
+    }
+
+    100% {
+        transform: skew(30deg, 20deg);
+    }
+}
+
+.press:hover {
+    background-color:seagreen;
+    color:#e25252;
+    transform: scale(1.5);
+}
+
+.circle {
+    background-color:blueviolet;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    margin: 50px auto;
+    transition: all 1s;
+}
+
+.circle:hover {
+    background-color:black;
+    transform: scale(0.5) translate(-100%, -100%);
 }
