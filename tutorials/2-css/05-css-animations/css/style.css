@@ -1,0 +1,87 @@
+body {
+    /* background-color: antiquewhite; */
+    animation: change-color 10s infinite alternate;
+}
+
+@keyframes change-color {
+    0% {
+        background-color: antiquewhite;
+    }
+
+    50% {
+        background-color: #e25252;
+    }
+
+    100% {
+        background-color: #ddca40;
+    }
+}
+
+.title {
+    font-family: cursive;
+    text-align: center;
+    margin: 80px auto;
+    animation: skew 3s infinite alternate;
+
+}
+
+@keyframes skew {
+    0% {
+        transform: skew(0deg, 0deg);
+    }
+
+    100% {
+        transform: skew(30deg, 20deg);
+    }
+}
+
+.square {
+    background-color: aqua;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    margin: 50px auto;
+    transition: all 1s;
+}
+
+.square:hover {
+    background-color: blue;
+    transform: rotate(30deg);
+}
+
+.button-div {
+    text-align: center;
+}
+
+.button {
+    color: aliceblue;
+    background-color: blue;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all .5s;
+    /* ~~~~~one way to center~~~~~
+    margin: 50px auto;
+    display: block;
+    width: 100px;
+    text-align: center; */
+}
+
+.button:hover {
+    background-color: bisque;
+    color: black;
+    transform: scale(1.5);
+}
+
+.loading {
+    background-color: green;
+    animation: stretch 5s infinite alternate;
+    width: 80vw;
+}
+
+@keyframes stretch {
+    0% {width: 100px;}
+
+    100% {width: 80vw;}
+}
