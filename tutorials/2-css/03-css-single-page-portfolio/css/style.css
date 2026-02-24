@@ -32,12 +32,24 @@ html {
 
 /* ~~~~~~~~~~~~~~ Genereal CSS  */
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-color-1);
     color: var(--font);
-    font-family: fantasy;
+    font-family: font-family: "Sacramento", cursive;
     font-size: 1.3rem;
     line-height: 1.5;
+    text-align: justify;
+
+}
+
+@media (max-width: 700px){
+    body {
+        font-size: 1.3rem;
+    }
 }
 
 header {
@@ -49,11 +61,18 @@ header {
     text-align: center;
 }
 
+@media (max-width: 700px){
+    header {
+        padding-left: 2rem;
+    }
+}
+
 header h1 {
     font-size: 3rem;
     /* text-decoration: underline;
     text-decoration-style: wavy;
     text-decoration-color: #2176FF; */
+    font-family: font-family: "Alice", serif;
 }
 
 nav {
@@ -66,15 +85,39 @@ nav {
 nav a {
     text-decoration: none;
     color: var(--accent-2);
+    border-radius: .5rem;
     display: inline-block;
-    margin: 1.5rem
+    margin: .5rem;
+    transition: all .5s ease
 }
 
 nav a:hover {
     background-color: var(--accent-1);
+    transform: scale(1.3);
 }
 
-main {}
+@media (max-width: 750px){
+    nav a {
+        margin: 0 .5rem;
+    }
+}
+
+main {
+    margin: 0;
+}
+
+@media (max-width: 850px) {
+    main {
+        margin: 3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        margin: 1re, ;
+    }
+}
+
 
 .about-section,
 .portfolio-section,
@@ -100,10 +143,22 @@ main {}
     margin-bottom: 5rem;
     background-color: var(--bg-color-1);
     padding: 4rem;
-    text-align: center;
     border: 2px var(--dark) solid;
     border-radius: .5rem;
     box-shadow: 10px 10px 5px #36003868;
+}
+
+
+@media (max-width: 800px) {
+    .portfolio-item {
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .portfolio-item {
+        padding: 2rem;
+    }
 }
 
 .portfolio-item img {
@@ -153,3 +208,9 @@ footer p {
 .accent-2 {
     color: #E7E5DF;
 }
+
+/* .sacramento-regular {
+  font-family: "Sacramento", cursive;
+  font-weight: 400;
+  font-style: normal;
+} */
