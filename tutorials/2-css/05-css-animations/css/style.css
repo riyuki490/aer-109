@@ -134,4 +134,5 @@ body {
 
 .circle:hover {
     background-color:black;
+    transform: translate(12px, 50%);
 }
