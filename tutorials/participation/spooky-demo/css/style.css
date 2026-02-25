@@ -1,0 +1,74 @@
+/*
+CSS RESETS
+*/
+
+
+/* Change box-sizing default to border-box */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+/* Remove default spacing */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Respect user font settings */
+html {
+    font-size: 100%;
+}
+
+body {
+    background-color: black;
+}
+
+
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(0, 100px);
+    }
+
+    50% {
+        transform: translate(100px, 50px);
+    }
+
+    /* 75% {
+        transform: translate(, 350px);
+    } */
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.spooky {
+    position: absolute;
+    animation: float 5s infinite;
+}
+
+.spooky:hover {
+    transform: scale(2) rotate(360deg);
+}
+
+
+.pumpkin {
+    width: 400px;
+    position: absolute;
+    left: 1300px;
+    top: 400px;
+    transition: all 1s;
+}
+
+.pumpkin:hover {
+    transform: scale(2) rotate(360deg);
+}
