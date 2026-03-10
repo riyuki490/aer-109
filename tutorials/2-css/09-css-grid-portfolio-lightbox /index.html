@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjmain Lee | portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/baguetteBox.css">
+</head>
+
+<body>
+    <header>
+
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>Benjmain Lee </h1>
+            </div>
+            <div class="nav">
+                <button class="hamburger">☰</button>
+                <ul class="nav-menu">
+                    <li><a href="#about-section">About</a></li>
+                    <li><a href="#portfolio-section">Work</a></li>
+                    <li><a href="#contact-section">Contact</a></li>
+                </ul>
+            </div>
+
+
+
+        </nav>
+
+    </header>
+    <main>
+        <section class="about-section" id="about-section">
+            <div class="about-content">
+                <h2><span class="accent-1">ᯓ★</span> About Me</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quae placeat consectetur iste nihil,
+                    ipsa dolores deleniti id tempora, enim harum voluptatem vitae. Sit et fuga, deserunt dolorum
+                    suscipit quidem?</p>
+            </div>
+        </section>
+        <section class="portfolio-section" id="portfolio-section">
+            <div class="portfolio-content">
+                <h2>My Work</h2>
+                <div class="flex-container-grid">
+                    <div class="portfolio-item flex-item-grid">
+                        <a href="images/bfa.jpg" data-caption="Caption for lightbox"><img src="images/bfa.jpg"
+                                alt="BFA showcase of my final project"></a>
+                        <h3>Predefinied Artistic Identity</h3>
+                        <p> Description of Work</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <a href="images/medal.jpg" data-caption="medal of dishonor"><img src="images/medal.jpg"
+                                alt="Metal made in intro to sculpting class"></a>
+                        <h3>Medal of Dishonor</h3>
+                        <p> Description of Work</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <a href="images/chopstick.jpg" data-caption="implied motion"><img src="images/chopstick.jpg"
+                                alt="implied motion project made in intro to sculpting class"></a>
+                        <h3>Implied motion Practice</h3>
+                        <p> Description of Work</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <img src="images/book.jpg" alt="found object project made in intro to sculpting class">
+                        <h3>DEVOUR</h3>
+                        <p> Description of Work</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <img src="images/bfa.jpg" alt="BFA showcase of my final project">
+                        <h3>Predefinied Artistic Identity</h3>
+                        <p> Description of Work</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <img src="images/medal.jpg" alt="Metal made in intro to sculpting class">
+                        <h3>Medal of Dishonor</h3>
+                        <p> Description of Work</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <img src="images/chopstick.jpg" alt="implied motion project made in intro to sculpting class">
+                        <h3>Implied motion Practice</h3>
+                        <p> Description of Work</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <img src="images/book.jpg" alt="found object project made in intro to sculpting class">
+                        <h3>DEVOUR</h3>
+                        <p> Description of Work</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="contact-section" id="contact-section">
+            <div class="contact-content">
+                <h2>Contact Me</h2>
+                <p>Email: </p>
+            </div>
+        </section>
+    </main>
+    <footer class="flex-container">
+        <p>&copy;2025 Benjmain Lee</p>
+        <div class="social-links">
+            <a href="#"><img src="images/icon-logo-instagram.png" alt=""></a>
+            <a href="#"><img src="images/icon-logo-twitter.png" alt=""></a>
+            <a href="#"><img src="images/icon-logo-youtube.png" alt=""></a>
+        </div>
+    </footer>
+    <script src="js/hamburger.js"></script>
+    <script src="js/baguetteBox.js"></script>
+    <script>
+        baguetteBox.run(".flex-container-grid", {
+            captions: true
+        })
+    </script>
+</body>
+
+</html>
