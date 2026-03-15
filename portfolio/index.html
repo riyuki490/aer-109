@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjmain Lee | portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/baguetteBox.css">
+</head>
+
+<body>
+    <header>
+
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>Benjmain Lee </h1>
+            </div>
+            <div class="nav">
+                <button class="hamburger">☰</button>
+                <ul class="nav-menu">
+                    <li><a href="#about-section">About</a></li>
+                    <li><a href="#portfolio-section">Work</a></li>
+                    <li><a href="#contact-section">Contact</a></li>
+                </ul>
+            </div>
+
+
+
+        </nav>
+
+    </header>
+    <main>
+        <section class="about-section" id="about-section">
+            <div class="about-content">
+                <h2><span class="accent-1">ᯓ★</span> About Me</h2>
+                <a><img src="images/profile.png" alt="anime crochet"></a>
+                <p>Benjamin Lee is a Bay Area-based artist and a Bachelor of Fine Arts student at San José State
+                    University, graduating in the spring of 2026. Growing up immersed in comics, cartoons, anime, and
+                    video games, he was captivated by their vibrant storytelling, dynamic action, and striking visuals.
+                    These early influences sparked his passion for creation, leading him to experiment with everything
+                    from Legos and papier-mâché to pipe cleaner action figures.
+                <p>At SJSU, Benjamin has expanded his artistic practice, exploring a wide range of mediums, including
+                    crochet, sculpture, and digital media. His work often reflects his love for storytelling and
+                    visually compelling narratives, aiming to create pieces that are not only fun and cool but also
+                    invite viewers to share in his personal joy and enthusiasm for life.</p>
+                <p>Through his art, Benjamin seeks to break free from societal expectations and labels, focusing instead
+                    on creating work that is authentic and meaningful to him. Whether it’s a crochet installation or a
+                    playful homage to his favorite media, his goal is to inspire others to embrace their own creativity
+                    and find beauty in the unexpected.</p>
+                </p>
+            </div>
+        </section>
+        <section class="portfolio-section" id="portfolio-section">
+            <div class="portfolio-content">
+                <h2><span class="accent-1">ᯓ★</span> My Work</h2>
+                <div class="flex-container-grid">
+                    <div class="portfolio-item flex-item-grid">
+                        <a href="images/bfa.jpg" data-caption="Predefinied Artistic Identity"><img src="images/bfa.jpg"
+                                alt="BFA showcase of my final project"></a>
+                        <h3>Predefinied Artistic Identity</h3>
+                        <h4>(BFA showcase)</h4>
+                        <p> BFA project about the confinment of what it means to be an artist when all one wants to do
+                            is make things I enjoy.</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <a href="images/medal.jpg" data-caption="Medal of Dishonor"><img src="images/medal.jpg"
+                                alt="Metal made in intro to sculpting class"></a>
+                        <h3>Medal of Dishonor</h3>
+                        <p> A medal of dishonor made in Intro to Sculpting call to award those who are sore winners and
+                            believe they are top dog.</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <a href="images/chopstick.jpg" data-caption="Chopsticks Holding Noodles"><img
+                                src="images/chopstick.jpg"
+                                alt="implied motion project made in intro to sculpting class"></a>
+                        <h3>Chopsticks Holding Noodles</h3>
+                        <h4>(Implied motion Practice)</h4>
+                        <p> A practice piece on welding and attempting to create something with implied motion.</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <a href="images/book.jpg" data-caption="DEVOUR"><img src="images/book.jpg"
+                                alt="found object project made in intro to sculpting class"></a>
+                        <h3>DEVOUR</h3>
+                        <p> Found objects project about how school textbooks are expensive and feel like they're
+                            eating at my wallet.</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <a href="images/breloom.jpg" data-caption="Breloom Pokemon Crochet"><img
+                                src="images/breloom.jpg" alt="Pokemon breloom"></a>
+                        <h3>Breloom</h3>
+                        <p> Pokemon crochet comission of Breloom.</p>
+                    </div>
+                    <div class="portfolio-item flex-item-grid">
+                        <a href="images/genesect.jpg" data-caption="Genesect Pokemon Crochet"><img
+                                src="images/genesect.jpg" alt="Pokemon genesect"></a>
+                        <h3>Genesect</h3>
+                        <p> Pokemon crochet comission of Genesect.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="contact-section" id="contact-section">
+            <div class="contact-content">
+                <h2><span class="accent-1">ᯓ★</span>Contact Me</h2>
+                <p>Email: benjamin.lee01@sjsu.edu</p>
+            </div>
+        </section>
+    </main>
+    <footer class="flex-container">
+        <p>&copy;2025 Benjmain Lee</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/plushie.parade/?hl=en"><img src="images/icon-logo-instagram.png"
+                    alt="link to insta"></a>
+        </div>
+    </footer>
+    <script src="js/hamburger.js"></script>
+    <script src="js/baguetteBox.js"></script>
+    <script>
+        baguetteBox.run(".flex-container-grid", {
+            captions: true
+        })
+    </script>
+</body>
+
+</html>
