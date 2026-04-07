@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box> -->
+        <!-- <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>  -->
+        <a-plane src="#floor" position="0 0 -4" rotation="-90 0 0" width="40" height="40" color="#7BC8A4" ></a-plane>
+        <a-sky color="#251E4A"></a-sky>
+
+        <a-assets>
+            <img id="floor" src="media-image-stuff/floor.jpg">
+            <img id="goku" src="media-image-stuff/goku.png">
+            <img id="zero" src="media-image-stuff/zero.png">
+            <img id="victory" src="media-image-stuff/victory.png">
+            <img id="guile" src="media-image-stuff/guile.png">
+            <img id="moon" src="media-image-stuff/moon.png">
+        </a-assets>
+
+        <!-- Using the asset management system. -->
+        <a-image src="#goku" position="0 2.5 5" rotation="0 0 0" height="5rem" width="5rem"></a-image>
+        <a-image src="#guile" position="0 2.5 -5" rotation="0 0 0" height="5rem" width="5rem"></a-image>
+        <a-image src="#zero" position="5 2.5 0" rotation="0 90 0" height="5rem" width="5rem"></a-image>
+        <a-image src="#victory" position="-5 2.5 0" rotation="0 90 0" height="5rem" width="5rem"></a-image>
+        <a-image src="#moon" position="0 25 0" rotation="90 0 0" height="10rem" width="10rem"></a-image>
+
+
+        <!-- Defining the URL inline. Not recommended but more comfortable for web developers. -->
+        <a-image src="another-image.png"></a-image>
+    </a-scene>
+</body>
+
+</html>
