@@ -172,7 +172,7 @@ function setup() {
     imageMode(CENTER);
 
     // Spawn a few ducks at the start
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 100; i++) {
         spawnDuck();
     }
 }
