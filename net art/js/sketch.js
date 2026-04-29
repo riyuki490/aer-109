@@ -154,6 +154,9 @@ let ripples = [];
 // Stores all duck agents
 let ducks = [];
 
+//variable to keep track of game over or not:
+let gameOver = false;
+
 function preload() {
     // Load images before the sketch runs
     img1 = loadImage("images/knife.png");
@@ -170,6 +173,9 @@ function setup() {
 
     // Draw images from their center instead of top-left
     imageMode(CENTER);
+
+    ensureGameOverUi();
+
 
     // Spawn a few ducks at the start
     for (let i = 0; i < 1; i++) {
@@ -241,8 +247,25 @@ function draw() {
         d.x += d.vx;
         d.y += d.vy;
 
+        /// checkif game over or not ie upate the gameover variable:
+
+        if (!gameOver && mouseHitsDuck(d)) {
+            if (d.img === img1) {
+                gameOver = true;
+            } else {
+                d.img = img1;
+            }
+        }
+
         // Draw this duck
         drawThing(d);
+        // end of draw:
+
+
+    }
+    if (gameOver) {
+        noLoop();
+        showGameOverUi();
     }
 }
 
@@ -331,4 +354,43 @@ function drawThing(d) {
 function windowResized() {
     // Adjust canvas if window size changes
     resizeCanvas(windowWidth, windowHeight);
+}
+
+function mouseHitsDuck(d, mx = mouseX, my = mouseY) {
+    let aspect = d.img.height / d.img.width;
+    let w = d.size;
+    let h = d.size * aspect;
+    return (
+        mx > d.x - w / 2 &&
+        mx < d.x + w / 2 &&
+        my > d.y - h / 2 &&
+        my < d.y + h / 2
+    );
+}
+function ensureGameOverUi() {
+    if (document.getElementById("game-over-overlay")) return;
+    const overlay = document.createElement("div");
+    overlay.id = "game-over-overlay";
+    overlay.style.cssText =
+        "display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);" +
+        "align-items:center;justify-content:center;z-index:10000;flex-direction:column;";
+    const panel = document.createElement("div");
+    panel.style.cssText =
+        "background:#fff;padding:28px 40px;border-radius:12px;text-align:center;" +
+        "font-family:system-ui,sans-serif;box-shadow:0 8px 32px rgba(0,0,0,.25);";
+    const msg = document.createElement("p");
+    msg.style.cssText = "margin:0 0 18px;font-size:1.15rem;line-height:1.5;";
+    msg.innerHTML = "You were killed<br>Game over";
+    const btn = document.createElement("button");
+    btn.textContent = "Restart";
+    btn.type = "button";
+    btn.onclick = () => location.reload();
+    panel.appendChild(msg);
+    panel.appendChild(btn);
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+}
+function showGameOverUi() {
+    const overlay = document.getElementById("game-over-overlay");
+    if (overlay) overlay.style.display = "flex";
 }
