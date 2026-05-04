@@ -1,16 +1,28 @@
 // -----------------------------------
 // SLASHER CHASE GAME - p5.js
-// One enemy image follows the mouse.
-// If it touches the cursor, the game ends.
+// One or more enemy images follow the mouse.
+// If any of them touches the cursor, the game ends.
 // A random door appears on screen.
 // Clicking the door refreshes the page
 // so it feels like entering a new area.
 // When the cursor hovers over the door,
 // a white border appears around it.
+// The floor and ripple colors also
+// randomize on each refresh.
+// The chaser speed also randomizes
+// between slow, medium, and fast.
+// The number of chasers also randomizes
+// with weighted odds.
 // -----------------------------------
 
 // Stores the background color
 let bgColor;
+
+// Stores a list of possible floor colors
+let floorColors = [];
+
+// Stores the currently selected floor color
+let currentFloorColor;
 
 // Stores enemy images
 let img1, img2, img3, img4;
@@ -21,8 +33,8 @@ let cursorImg;
 // Stores door images
 let door1, door2, door3;
 
-// Stores the single chaser object
-let killer;
+// Stores all current chasers
+let killers = [];
 
 // Stores the current door object
 let door;
@@ -58,14 +70,35 @@ function setup() {
     // Create a canvas that fills the whole browser window
     createCanvas(windowWidth, windowHeight);
 
-    // Set the background color
-    // Dark red/black gives a more horror/slasher feeling
-    bgColor = color(30, 0, 0);
+    // Build the list of possible floor colors
+    // Includes:
+    // - the original dark red
+    // - greens inspired by your first palette
+    // - purples/darks inspired by your second palette
+    floorColors = [
+        color(30, 0, 0),      // original dark red
+        color(153, 0, 0),     // deeper red from palette 1
+        color(0, 69, 63),     // teal green
+        color(0, 48, 43),     // dark green-teal
+        color(130, 149, 106), // muted sage
+        color(109, 132, 86),  // darker olive green
+        color(167, 83, 81),   // dusty red from palette 2
+        color(94, 0, 78),     // deep magenta purple
+        color(31, 32, 65),    // dark indigo
+        color(47, 0, 32),     // dark plum
+        color(32, 33, 34)     // charcoal
+    ];
+
+    // Pick one floor color randomly each refresh
+    currentFloorColor = random(floorColors);
+
+    // Set the scene background color to the chosen floor color
+    bgColor = currentFloorColor;
 
     // Draw images from their center point instead of top-left corner
     imageMode(CENTER);
 
-    // Create the single killer when the sketch starts
+    // Create the chasers when the sketch starts
     spawnKiller();
 
     // Create one random door when the sketch starts
@@ -118,77 +151,123 @@ function draw() {
         return;
     }
 
-    // Move the killer toward the mouse
+    // Move all chasers toward the mouse
     updateKiller();
 
-    // Draw the killer image
+    // Draw all chasers
     drawKiller();
 
     // Draw the running-guy cursor image
     drawCursor();
 
-    // Check whether the killer has touched the cursor
+    // Check whether any chaser has touched the cursor
     checkGameOver();
 }
 
 function spawnKiller() {
-    // Pick a random edge of the screen to spawn from
-    let side = floor(random(4));
+    // Clear out any old chasers first
+    killers = [];
 
-    // Variables for the starting position
-    let startX, startY;
+    // Use weighted odds for how many chasers appear
+    // 60% chance = 1 chaser
+    // 25% chance = 2 chasers
+    // 15% chance = 3 chasers
+    let roll = random();
+    let numKillers;
 
-    if (side === 0) {
-        // Spawn off the left side
-        startX = -200;
-        startY = random(height);
-    } else if (side === 1) {
-        // Spawn off the right side
-        startX = width + 200;
-        startY = random(height);
-    } else if (side === 2) {
-        // Spawn off the top
-        startX = random(width);
-        startY = -200;
+    if (roll < 0.60) {
+        numKillers = 1;
+    } else if (roll < 0.85) {
+        numKillers = 2;
     } else {
-        // Spawn off the bottom
-        startX = random(width);
-        startY = height + 200;
+        numKillers = 3;
     }
 
-    // Put all images into an array
-    let imgs = [img1, img2, img3, img4];
+    // Create that many chasers
+    for (let i = 0; i < numKillers; i++) {
+        // Pick a random edge of the screen to spawn from
+        let side = floor(random(4));
 
-    // Randomly choose one slasher image for this round
-    let chosenImg = random(imgs);
+        // Variables for the starting position
+        let startX, startY;
 
-    // Create the killer object
-    killer = {
-        // Starting x position
-        x: startX,
+        if (side === 0) {
+            // Spawn off the left side
+            startX = -200;
+            startY = random(height);
+        } else if (side === 1) {
+            // Spawn off the right side
+            startX = width + 200;
+            startY = random(height);
+        } else if (side === 2) {
+            // Spawn off the top
+            startX = random(width);
+            startY = -200;
+        } else {
+            // Spawn off the bottom
+            startX = random(width);
+            startY = height + 200;
+        }
 
-        // Starting y position
-        y: startY,
+        // Put all images into an array
+        let imgs = [img1, img2, img3, img4];
 
-        // Horizontal speed
-        vx: 0,
+        // Randomly choose one slasher image for this chaser
+        let chosenImg = random(imgs);
 
-        // Vertical speed
-        vy: 0,
+        // Create three possible speed styles for the chaser
+        let chaseTypes = [
+            {
+                // Slow but intimidating
+                name: "slow",
+                easing: 0.002,
+                drag: 0.93
+            },
+            {
+                // Medium pace
+                name: "medium",
+                easing: 0.005,
+                drag: 0.90
+            },
+            {
+                // Fast chaser
+                name: "fast",
+                easing: 0.015,
+                drag: 0.87
+            }
+        ];
 
-        // Controls how strongly the killer is pulled toward the mouse
-        // Higher number = faster/stronger chase
-        easing: 0.005,
+        // Randomly choose one speed type for this chaser
+        let chosenType = random(chaseTypes);
 
-        // Drag keeps movement smooth instead of too floaty or too sharp
-        drag: 0.90,
+        // Add this chaser to the array
+        killers.push({
+            // Starting x position
+            x: startX,
 
-        // The chosen slasher image
-        img: chosenImg,
+            // Starting y position
+            y: startY,
 
-        // Display width of the image
-        size: 180
-    };
+            // Horizontal speed
+            vx: 0,
+
+            // Vertical speed
+            vy: 0,
+
+            // Randomized chase behavior
+            easing: chosenType.easing,
+            drag: chosenType.drag,
+
+            // Save the speed type name
+            speedType: chosenType.name,
+
+            // The chosen slasher image
+            img: chosenImg,
+
+            // Randomize the size a little so groups do not look too identical
+            size: random(150, 210)
+        });
+    }
 }
 
 function spawnDoor() {
@@ -213,35 +292,41 @@ function spawnDoor() {
 }
 
 function updateKiller() {
-    // Find how far away the mouse is from the killer on the x-axis
-    let dx = mouseX - killer.x;
+    // Update every chaser in the array
+    for (let k of killers) {
+        // Find how far away the mouse is from this chaser on the x-axis
+        let dx = mouseX - k.x;
 
-    // Find how far away the mouse is from the killer on the y-axis
-    let dy = mouseY - killer.y;
+        // Find how far away the mouse is from this chaser on the y-axis
+        let dy = mouseY - k.y;
 
-    // Turn that distance into acceleration toward the mouse
-    let ax = dx * killer.easing;
-    let ay = dy * killer.easing;
+        // Turn that distance into acceleration toward the mouse
+        let ax = dx * k.easing;
+        let ay = dy * k.easing;
 
-    // Add acceleration into velocity
-    killer.vx += ax;
-    killer.vy += ay;
+        // Add acceleration into velocity
+        k.vx += ax;
+        k.vy += ay;
 
-    // Apply drag so movement feels smoother and less instant
-    killer.vx *= killer.drag;
-    killer.vy *= killer.drag;
+        // Apply drag so movement feels smoother and less instant
+        k.vx *= k.drag;
+        k.vy *= k.drag;
 
-    // Update the killer's position
-    killer.x += killer.vx;
-    killer.y += killer.vy;
+        // Update the chaser's position
+        k.x += k.vx;
+        k.y += k.vy;
+    }
 }
 
 function drawKiller() {
-    // Keep the image proportions correct
-    let aspect = killer.img.height / killer.img.width;
+    // Draw every chaser
+    for (let k of killers) {
+        // Keep the image proportions correct
+        let aspect = k.img.height / k.img.width;
 
-    // Draw the killer image centered at its x and y position
-    image(killer.img, killer.x, killer.y, killer.size, killer.size * aspect);
+        // Draw the chaser image centered at its x and y position
+        image(k.img, k.x, k.y, k.size, k.size * aspect);
+    }
 }
 
 function drawDoor() {
@@ -299,16 +384,19 @@ function isMouseOverDoor() {
 }
 
 function checkGameOver() {
-    // Measure distance between the killer and the cursor
-    let d = dist(killer.x, killer.y, mouseX, mouseY);
-
-    // This value decides how close the killer has to get before you lose
-    // Increased a little since the cursor is now a bigger GIF
+    // This value decides how close a chaser has to get before you lose
     let hitDistance = 60;
 
-    // If the killer reaches the cursor, end the game
-    if (d < hitDistance) {
-        gameOver = true;
+    // Check every chaser
+    for (let k of killers) {
+        // Measure distance between this chaser and the cursor
+        let d = dist(k.x, k.y, mouseX, mouseY);
+
+        // If any chaser reaches the cursor, end the game
+        if (d < hitDistance) {
+            gameOver = true;
+            return;
+        }
     }
 }
 
@@ -346,7 +434,7 @@ function drawGameOverScreen() {
     textSize(24);
     text("Press R to restart", width / 2, height / 2 + 30);
 
-    // Still draw the killer on screen for dramatic effect
+    // Still draw all chasers on screen for dramatic effect
     drawKiller();
 }
 
@@ -370,9 +458,22 @@ function drawRipples() {
         // Thickness of ripple outlines
         strokeWeight(2);
 
-        // Red-tinted ripple colors for a horror look
-        let light = color(255, 120, 120, r.alpha);
-        let shadow = color(120, 0, 0, r.alpha);
+        // Build ripple colors from the chosen floor color
+        // Light ripple = brighter version of the floor color
+        let light = color(
+            clampColor(red(currentFloorColor) + 80),
+            clampColor(green(currentFloorColor) + 80),
+            clampColor(blue(currentFloorColor) + 80),
+            r.alpha
+        );
+
+        // Shadow ripple = darker version of the floor color
+        let shadow = color(
+            clampColor(red(currentFloorColor) - 60),
+            clampColor(green(currentFloorColor) - 60),
+            clampColor(blue(currentFloorColor) - 60),
+            r.alpha
+        );
 
         // Draw outer darker rings
         stroke(shadow);
@@ -396,6 +497,11 @@ function drawRipples() {
     }
 }
 
+function clampColor(value) {
+    // Keep color values inside the valid range 0 to 255
+    return constrain(value, 0, 255);
+}
+
 function keyPressed() {
     // If the player presses R after losing, restart the game
     if (key === 'r' || key === 'R') {
@@ -410,7 +516,11 @@ function restartGame() {
     // Clear old ripples
     ripples = [];
 
-    // Spawn a fresh killer
+    // Pick a new random floor color
+    currentFloorColor = random(floorColors);
+    bgColor = currentFloorColor;
+
+    // Spawn fresh chasers
     spawnKiller();
 
     // Spawn a fresh random door
